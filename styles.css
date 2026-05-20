@@ -972,10 +972,10 @@ body {
   pointer-events: none;
   z-index:5;
 }
-#candles14 .candle-img14 {top: 12%; right: 5%; filter: drop-shadow(0 0 40px rgba(97, 23, 108, 0.878));
+#candles14 .candle-img14 {top: 10%; right: 5%; filter: drop-shadow(0 0 40px rgba(97, 23, 108, 0.878));
   position: absolute;
   opacity: 0.9; 
-  height: clamp(15rem, 25vw, 24rem);
+  height: clamp(12rem, 25vw, 24rem);
   pointer-events: none;
   z-index:5;
 }
