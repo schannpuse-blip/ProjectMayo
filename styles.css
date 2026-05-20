@@ -1355,7 +1355,7 @@ p{
 }
 
 .slider {
-  width: 120px;
+  width: 70px;
   height: 10px;
   background: linear-gradient(90deg, rgb(117, 252, 117) 50%, rgb(214, 214, 214) 50%);
   outline: none;
@@ -1383,14 +1383,4 @@ p{
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
-
-@media (max-width: 768px) {
-  .slider {
-    width: 150px;
-    height: 12px;
-  }
-  .slider::-webkit-slider-thumb {
-    width: 30px;
-    height: 30px;
-  }
 }
