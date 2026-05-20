@@ -483,8 +483,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Use multiple events for broad device support; input/change as fallback
     slider.addEventListener('pointerdown', ensureAudioStarted);
     slider.addEventListener('pointermove', ensureAudioStarted);
-    slider.addEventListener('touchstart', ensureAudioStarted, {passive: true});
-    slider.addEventListener('touchmove', ensureAudioStarted, {passive: true});
     slider.addEventListener('input', ensureAudioStarted);
     slider.addEventListener('change', ensureAudioStarted);
 
