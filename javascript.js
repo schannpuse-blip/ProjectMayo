@@ -286,6 +286,24 @@ function pauseDropdownVideo(dropdown) {
       iframe.contentWindow.postMessage({ method: 'pause' }, '*');
     }
   }
+
+  restoreBackgroundMusic();
+}
+
+function restoreBackgroundMusic() {
+  const bgMusic = document.getElementById('bgMusic');
+  const slider = document.getElementById('myRange');
+  if (!bgMusic) return;
+
+  if (slider) {
+    bgMusic.volume = slider.value / 100;
+  }
+
+  if (bgMusic.muted) {
+    bgMusic.muted = false;
+  }
+
+  bgMusic.play().catch(err => console.log('restoreBackgroundMusic failed:', err));
 }
 
 function ensureDailymotionAutoplay(iframe) {
