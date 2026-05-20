@@ -1380,15 +1380,3 @@ p{
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
-
-/* Improve touch target on small screens */
-@media (max-width: 600px) {
-  .slider {
-    width: 140px;
-    height: 10px;
-  }
-  .slider::-webkit-slider-thumb {
-    width: 28px;
-    height: 28px;
-  }
-}
