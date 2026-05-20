@@ -484,31 +484,38 @@ document.addEventListener("DOMContentLoaded", () => {
   var bgMusic = document.getElementById("bgMusic");
   
   if (slider && bgMusic) {
-    bgMusic.volume = slider.value / 100;
-    
-    slider.oninput = function() {
-      bgMusic.volume = this.value / 100;
-    }
-    
-    // Ensure a user gesture from the slider will unmute/start audio on mobile
+    const updateSliderVolume = () => {
+      const volume = Number(slider.value) / 100;
+      bgMusic.volume = volume;
+      if (bgMusic.muted) bgMusic.muted = false;
+      bgMusic.play().catch(() => {});
+
+      const color = `linear-gradient(90deg, rgb(117, 252, 117) ${slider.value}%, rgb(214, 214, 214) ${slider.value}%)`;
+      slider.style.background = color;
+    };
+
+    // Set initial volume and track fill
+    updateSliderVolume();
+
     function ensureAudioStarted() {
       try {
         if (bgMusic.muted) bgMusic.muted = false;
-        bgMusic.play().catch(function(){});
+        bgMusic.play().catch(() => {});
       } catch (e) {}
     }
 
-    // Use multiple events for broad device support; input/change as fallback
     slider.addEventListener('pointerdown', ensureAudioStarted);
     slider.addEventListener('pointermove', ensureAudioStarted);
-    slider.addEventListener('input', ensureAudioStarted);
-    slider.addEventListener('change', ensureAudioStarted);
-
-    slider.addEventListener("input", function(){
-      var x = this.value;
-      var color = `linear-gradient(90deg, rgb(117, 252, 117) ${x}%, rgb(214, 214, 214) ${x}%)`;
-      this.style.background = color;
-    });
+    slider.addEventListener('mousedown', ensureAudioStarted);
+    slider.addEventListener('touchstart', ensureAudioStarted, {passive: false});
+    slider.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+      ensureAudioStarted();
+      updateSliderVolume();
+    }, {passive: false});
+    slider.addEventListener('touchend', ensureAudioStarted, {passive: true});
+    slider.addEventListener('input', updateSliderVolume);
+    slider.addEventListener('change', updateSliderVolume);
   }
 });
 
